@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>airplane-challenge-I</title>
+</head>
+<body>
+    <style type="text/css">
+    #ocean {
+        background-image: url("Airplane associated images/City.jpg");
+        width: 900px;
+        height: 700px;
+    }
+    .player {
+        position: absolute;
+        background-image: url("Airplane associated images/superplane80x67.png");
+        width: 80px;
+        height: 67px;
+    }
+    .enemy {
+        position: absolute;
+        background-image: url("Airplane associated images/Medium_boss80X65.png");
+        width: 80px;
+        height: 65px;
+    }
+    </style>
+    <div id="ocean">
+        <div id="players"></div>
+        <div id="enemies"></div>
+    </div>
+    <script type="text/javascript">
+    let player = {
+        left: 450,
+        top: 620,
+    }
+    let enemy =[
+        {left:250,top:200},
+        {left:350,top:200},
+        {left:450,top:200},
+        {left:550,top:200},
+        {left:650,top:200},
+        {left:750,top:200},
+    ]
+    function drawPlayer() {
+        content = `<div class='player' style='left: ${player.left}px;top: ${player.top}px;'></div>`;
+        document.getElementById("players").innerHTML=content;
+    }
+    drawPlayer();
+    
+    function drawEmemies() {
+        content='';
+        console.log(enemy);
+        for (let idx = 0; idx < enemy.length; idx++) {
+            //console.log(idx);
+            content += `<div class='enemy' style='left: ${enemy[idx].left}px;top: ${enemy[idx].top}px;'></div>`;
+            //console.log(content);
+            }
+        document.getElementById("enemies").innerHTML=content;
+    }
+    drawEmemies();
+
+    document.onkeydown = function(e) {
+        console.log(e);
+        if(e.keyCode===37 && player.left>0){//left
+            player.left -=10;
+        }
+        if(e.keyCode===39 && player.left<830){//right
+            player.left +=10;
+        }
+        if(e.keyCode===38 && player.top>470){//up
+            player.top -=10;
+        }
+        if(e.keyCode===40 && player.top<640){//down
+            player.top +=10;
+        }
+        drawPlayer();
+    }
+    
+    </script>
+</body>
+</html>
